@@ -1,0 +1,59 @@
+body {
+  font-family: sans-serif;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.logoImg {
+  height: 0 auto;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+.coDiv {
+  margin: 0 -15px;
+}
+
+.formCont {
+  height: 300px;
+}
+
+.tableHolder {
+  margin-top: 70px;
+  margin-bottom: 70px;
+}
+
+.pdfButton {
+  height: 100px;
+}
+
+.mainDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.nameInfoHolder {
+  margin-left: 20px;
+}
+
+.paper {
+  width: 60%;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding-top: 100px;
+}
+
+table {
+  align-self: center !important;
+  align-content: center;
+  text-align: center !important;
+  align-items: center;
+}
+
+td {
+  vertical-align: middle !important;
+  align-content: center;
+  text-align: center !important;
+}

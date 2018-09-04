@@ -21,14 +21,14 @@ class MainPaper extends Component {
 
     render() {
         return (
-            <div className="w3-container w3-center mainDiv">
+            <div className="w3-container w3-col mainDiv">
                 <Paper className="paper" id="paper">
                     <div className="w3-container">
                         <div className="w3-row">
-                            <div className="w3-col s3 w3-center">
+                            <div className="w3-col s4">
                                 <img src={require('../assets/logo.png')} alt="main logo" className="w3-image logoImg" />
                             </div>
-                            <div className="w3-col s9 w3-left">
+                            <div className="w3-rest w3-container w3-center">
                                 <h3><b>Department of {this.getDeptName()}</b></h3><br />
                                 <h3><b>Academic Year: {this.getYearConfig()}</b></h3>
                             </div>
@@ -36,9 +36,9 @@ class MainPaper extends Component {
                         <div className="w3-container w3-center">
                             <h3><b>Assignment No. {this.props.assignNo}</b></h3>
                         </div><br />
-                        <div className="w3-row">
-                            <div className="w3-col w3-left s7"><h4><b>Subject: {this.props.subject}</b></h4></div>
-                            <div className="w3-col w3-left s5 "><h4><b>Semester: {this.props.sem}</b></h4></div>
+                        <div className="w3-row w3-center">
+                            <div className="w3-col s6"><h4><b>Subject: {this.props.subject}</b></h4></div>
+                            <div className="w3-rest"><h4><b>Semester: {this.props.sem}</b></h4></div>
                         </div>
                     </div>
                     <TableGenerator />

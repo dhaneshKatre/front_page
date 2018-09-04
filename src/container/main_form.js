@@ -12,6 +12,7 @@ import jsPDF from 'jspdf';
 import { saveAs } from 'file-saver/FileSaver';
 import Joyride from 'react-joyride';
 import { EVENTS } from 'react-joyride/es/constants';
+import SwipeableViews from 'react-swipeable-views';
 
 //UI Dependencies
 import Card from '@material-ui/core/Card';
@@ -155,7 +156,6 @@ class MainForm extends React.Component {
         }
     }
 
-    //UI rendering
     render() {
         const { steps, run, stepIndex } = this.state;
         return (
@@ -170,8 +170,208 @@ class MainForm extends React.Component {
                         callback={this.callback}
                     />
                 </div>
-                <div className="w3-row">
-                    <div className="w3-col s4 w3-container w3-center">
+                <div className="w3-container swipeContainer">
+                    <SwipeableViews className="w3-container" enableMouseEvents>
+                        <div className="w3-col w3-container w3-center">
+                            <Card className="formCont" id="form1">
+                                <CardContent>
+                                    <form>
+                                        <FormControl>
+                                            <InputLabel htmlFor="dept-select">Department</InputLabel>
+                                            <Select
+                                                style={{width: 250}}
+                                                value={this.props.department}
+                                                onChange={this.onDepartmentChanged.bind(this)}
+                                                inputProps={{name: 'Department', id: "dept-select"}}>
+                                                    <MenuItem value="Computer">Computer</MenuItem>
+                                                    <MenuItem value="Electronics">Electronics</MenuItem>
+                                                    <MenuItem value="Electronics &amp; Telecommunications">EXTC</MenuItem>
+                                                    <MenuItem value="Information Technology">Information Technology</MenuItem>
+                                                    <MenuItem value="Instrumentation">Instrumentation</MenuItem>
+                                            </Select>
+                                            <FormHelperText>Choose your Department</FormHelperText>
+                                        </FormControl><br />
+                                        <FormControl>
+                                            <InputLabel htmlFor="sem-select">Semester</InputLabel>
+                                            <Select
+                                                style={{width: 250}}
+                                                value={this.props.sem}
+                                                onChange={this.onSemesterChanged.bind(this)}
+                                                inputProps={{name: 'Semester', id: "sem-select"}} >
+                                                    <MenuItem value="I">I</MenuItem>
+                                                    <MenuItem value="II">II</MenuItem>
+                                                    <MenuItem value="III">III</MenuItem>
+                                                    <MenuItem value="IV">IV</MenuItem>
+                                                    <MenuItem value="V">V</MenuItem>
+                                                    <MenuItem value="VI">VI</MenuItem>
+                                                    <MenuItem value="VII">VII</MenuItem>
+                                                    <MenuItem value="VIII">VIII</MenuItem>
+                                            </Select>
+                                            <FormHelperText>Choose your Semester</FormHelperText>
+                                        </FormControl><br />
+                                        <TextField
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                    <Spellcheck />
+                                                    </InputAdornment>
+                                                )
+                                            }}
+                                            style={{width: 250}}
+                                            id="subject-name"
+                                            label="Enter subject name"
+                                            margin="normal"
+                                            value={this.props.subject}
+                                            onChange={this.onSubjectChanged.bind(this)}
+                                        /><br />
+                                        <TextField
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                    <Subject />
+                                                    </InputAdornment>
+                                                )
+                                            }}
+                                            style={{width: 250}}
+                                            id="assign-no"
+                                            label="Enter assignment number"
+                                            margin="normal"
+                                            type="number"
+                                            value={this.props.assignNo}
+                                            onChange={this.onAssignNoChanged.bind(this)}
+                                        /><br />
+                                    </form>
+                                </CardContent>
+                            </Card>
+                        </div>
+                        <div className="w3-col w3-container w3-center">
+                            <Card className="formCont" id="form3">
+                                <CardContent>
+                                    <form>
+                                        <TextField
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                    <AccountCircle />
+                                                    </InputAdornment>
+                                                )
+                                            }}
+                                            id="name"
+                                            label="Enter Name"
+                                            margin="normal"
+                                            value={this.props.name}
+                                            onChange={this.onNameChanged.bind(this)}
+                                        /><br />
+                                        <TextField 
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                    <FormatListNumbered />
+                                                    </InputAdornment>
+                                                )
+                                            }}
+                                            id="roll"
+                                            label="Enter Roll Number"
+                                            margin="normal"
+                                            value={this.props.roll}
+                                            onChange={this.onRollChanged.bind(this)}
+                                        /><br />
+                                        <TextField 
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                    <School />
+                                                    </InputAdornment>
+                                                )
+                                            }}
+                                            id="batch"
+                                            label="Enter Batch"
+                                            margin="normal"
+                                            value={this.props.batch}
+                                            onChange={this.onBatchChanged.bind(this)}
+                                        /><br />
+                                    </form>
+                                </CardContent>
+                            </Card>
+                        </div>
+                        <div className="w3-col w3-container w3-center">
+                            <Card id="form2">
+                                <CardContent>
+                                    <CoForm />
+                                </CardContent>
+                            </Card>
+                        </div>
+                    </SwipeableViews>
+                    <div className="w3-container w3-margin">
+                        <div className="w3-container" style={{display: 'flex', justifyContent: 'center'}}>
+                            <Button
+                                id="demo"
+                                className="w3-amber"
+                                style={{height: 60, width: 175, margin: 5}}
+                                variant="contained"
+                                onClick={() => {
+                                    this.setState({run: true});
+                                }}
+                            ><Help style={{margin: 5}}/>How to use ?</Button>
+                        </div>
+                        <div className="w3-container" style={{display: 'flex', justifyContent: 'center'}}>
+                            <Button
+                                id="almightyPdfButton"
+                                className="w3-green almightyPdfButton"
+                                style={{height: 60, width: 175, margin: 5}}
+                                variant="contained"
+                                onClick={() => {
+                                    html2canvas(document.querySelector("#paper")).then(paperImg => {
+                                        const pdf = new jsPDF('p','pt','a4',1);
+                                        pdf.viewerPreferences({
+                                            'FitWindow': true,
+                                            'CenterWindow': true
+                                        }, true);
+                                        pdf.addImage(paperImg, 'JPEG', 2, 0);
+                                        pdf.save(`${this.props.subject}_${this.props.assignNo}_frontPage.pdf`);
+                                    });
+                                }}
+                            ><PictureAsPdf style={{margin: 5}}/>PDF</Button>
+                        </div>
+                        <div className="w3-container" style={{display: 'flex', justifyContent: 'center'}}>
+                            <Button
+                                id="almightyPngButton"
+                                className="w3-deep-purple almightyPngButton"
+                                style={{height: 60, width: 175, margin: 5}}
+                                variant="contained"
+                                onClick={() => {
+                                    domtoimage.toBlob(document.getElementById("paper"))
+                                    .then(blob => {
+                                        saveAs(blob, `${this.props.subject}_${this.props.assignNo}_frontPage.png`);
+                                    }).catch(error => {
+                                        console.log(error)
+                                    });
+                                }}
+                            ><Photo style={{margin: 5}}/>PNG (Phones)</Button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    //UI rendering
+    renderio() {
+        const { steps, run, stepIndex } = this.state;
+        return (
+            <div>
+                <div>
+                    <Joyride
+                        locale={{back: 'Back', close: 'Close', last: 'Last', next: 'Next', skip: 'Skip the tour'}}
+                        steps={steps}
+                        continuous={true}
+                        run={run}
+                        stepIndex={stepIndex}
+                        callback={this.callback}
+                    />
+                </div>
+                <div className="w3-col">
+                    <div className="w3-col w3-container w3-center">
                         <Card className="formCont" id="form1">
                             <CardContent>
                                 <form>
@@ -243,14 +443,14 @@ class MainForm extends React.Component {
                             </CardContent>
                         </Card>
                     </div>
-                    <div className="w3-col s4 w3-container w3-center">
+                    <div className="w3-col w3-container w3-center">
                         <Card id="form2">
                             <CardContent>
                                 <CoForm />
                             </CardContent>
                         </Card>
                     </div>
-                    <div className="w3-col s4 w3-container w3-center">
+                    <div className="w3-col w3-container w3-center">
                         <Card className="formCont" id="form3">
                             <CardContent>
                                 <form>

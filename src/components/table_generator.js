@@ -5,7 +5,7 @@ class TableGenerator extends Component {
 
     constructor(props) {
         super(props);
-        setInterval(() => this.forceUpdate(), 1000);
+        setInterval(() => this.forceUpdate(), 2000);
     }
 
     renderCos() {

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import './index.css';
-
 import MainForm from './container/main_form';
 import MainPaper from './container/main_paper';
 

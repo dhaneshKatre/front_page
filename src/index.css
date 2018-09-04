@@ -27,6 +27,16 @@ body {
   height: 100px;
 }
 
+.almightyPdfButton {
+  margin: 0px 10px;
+  display: block;
+}
+
+.almightyPngButton {
+  margin: 0px 10px;
+  display: block;
+}
+
 .mainDiv {
   display: flex;
   justify-content: center;
@@ -36,6 +46,7 @@ body {
 
 .nameInfoHolder {
   margin-left: 20px;
+  margin-bottom: 50px;
 }
 
 .paper {

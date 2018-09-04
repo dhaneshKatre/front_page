@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { TextField } from '@material-ui/core';
 import * as actions from '../actions';
+
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SentimentVerySatisfied from '@material-ui/icons/SentimentVerySatisfied';
 
 
 class CoForm extends Component {
@@ -10,19 +14,18 @@ class CoForm extends Component {
     onTotalCoChanged(event) {
         this.props.totalCoChanged(event.target.value);
         this.props.updateCoArray([]);
+        this.props.updateMarksArray([]);
     }
 
     onIndividualMarkTextChanged(event) {
         let tmp = this.props.marksArray;
         tmp[event.target.id] = event.target.value;
-        console.log(tmp)
         this.props.updateMarksArray(tmp);
     }
 
     onIndividualCoTextChanged(event) {
         let tmp = this.props.coArray;
         tmp[event.target.id] = event.target.value;
-        console.log(tmp)
         this.props.updateCoArray(tmp);
     }
 
@@ -63,6 +66,13 @@ class CoForm extends Component {
             <div className="w3-container w3-center">
                 <div className="w3-container">
                     <TextField 
+                        InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <SentimentVerySatisfied />
+                              </InputAdornment>
+                            )
+                        }}
                         id="co-no"
                         label="Enter total COs"
                         margin="normal"

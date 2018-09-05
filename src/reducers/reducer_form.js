@@ -8,7 +8,8 @@ import {
     SEM_CHANGED,
     TOTAL_CO_CHANGED,
     CO_ARRAY_UPDATED,
-    MARKS_ARRAY_UPDATED
+    MARKS_ARRAY_UPDATED,
+    CONO_ARRAY_UPDATED
  } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -21,7 +22,8 @@ const INITIAL_STATE = {
     sem: "",
     totalCos: 0,
     coArray: [],
-    marksArray: []
+    marksArray: [],
+    coNoArray: []
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -46,6 +48,8 @@ export default function(state = INITIAL_STATE, action) {
             return { ...state, coArray: action.payload };
         case MARKS_ARRAY_UPDATED:
             return { ...state, marksArray: action.payload };
+        case CONO_ARRAY_UPDATED:
+            return { ...state, coNoArray: action.payload };
         default:
             return state;
     }

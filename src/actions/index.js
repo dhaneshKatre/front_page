@@ -8,7 +8,8 @@ import {
     SEM_CHANGED,
     TOTAL_CO_CHANGED,
     CO_ARRAY_UPDATED,
-    MARKS_ARRAY_UPDATED
+    MARKS_ARRAY_UPDATED,
+    CONO_ARRAY_UPDATED
 } from './types';
 
 export const subjectChanged = (subject) => {
@@ -77,6 +78,13 @@ export const updateCoArray = (arr) => {
 export const updateMarksArray = (arr) => {
     return {
         type: MARKS_ARRAY_UPDATED,
+        payload: arr
+    };
+};
+
+export const updateCoNoArray = (arr) => {
+    return {
+        type: CONO_ARRAY_UPDATED,
         payload: arr
     };
 };

@@ -15,6 +15,13 @@ class CoForm extends Component {
         this.props.totalCoChanged(event.target.value);
         this.props.updateCoArray([]);
         this.props.updateMarksArray([]);
+        this.props.updateCoNoArray([]);
+    }
+
+    onCoNoChanged(event) {
+        let tmp = this.props.coNoArray;
+        tmp[event.target.id] = event.target.value;
+        this.props.updateCoNoArray(tmp);
     }
 
     onIndividualMarkTextChanged(event) {
@@ -33,27 +40,35 @@ class CoForm extends Component {
         let newcos = []
         for(let i=0;i<this.props.totalCos;i++)
             newcos.push(
-                <div className="w3-row">
-                    <div className="w3-left s6 w3-center">
+                <div className="w3-row" key={Math.random() * Math.random() * Math.random()}>
+                    <div className="w3-col s4 w3-center">
                         <TextField
-                            style={{width: 175}}
-                            key={i}
+                            margin="normal"
+                            style={{width: 145}}
+                            id={i.toString()}
+                            value={this.props.coNoArray[i]}
+                            onChange={this.onCoNoChanged.bind(this)}
+                            label={`CO number`}
+                        />
+                    </div>
+                    <div className="w3-col s4 w3-center">
+                        <TextField
+                            margin="normal"
+                            style={{width: 135}}
                             id={i.toString()}
                             value={this.props.coArray[i]}
                             onChange={this.onIndividualCoTextChanged.bind(this)}
-                            label={`Enter CO${i+1} questions`}
-                            margin="normal"
+                            label={`CO${i+1} questions`}
                         />
                     </div>
-                    <div className="w3-right s6 w3-center">
+                    <div className="w3-col s4 w3-center">
                         <TextField
-                            key={i+45}
-                            style={{width: 175}}
-                            id={i.toString()}
-                            value={this.props.coArray[i]}
-                            onChange={this.onIndividualMarkTextChanged.bind(this)}
-                            label={`Enter CO${i+1} marks`}
                             margin="normal"
+                            style={{width: 135}}
+                            id={i.toString()}
+                            value={this.props.marksArray[i]}
+                            onChange={this.onIndividualMarkTextChanged.bind(this)}
+                            label={`CO${i+1} marks`}
                         />
                     </div>
                 </div>
@@ -97,7 +112,8 @@ function mapStateToProps(state) {
     return {
         totalCos: state.form.totalCos,
         coArray: state.form.coArray,
-        marksArray: state.form.marksArray
+        marksArray: state.form.marksArray,
+        coNoArray: state.form.coNoArray
     }
 }
 

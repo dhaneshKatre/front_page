@@ -9,3 +9,4 @@ export const SEM_CHANGED = "sem_changed";
 export const TOTAL_CO_CHANGED = "totalCoChanged"
 export const CO_ARRAY_UPDATED = "coArrayUpdated";
 export const MARKS_ARRAY_UPDATED = "marksArrayUpdated";
+export const CONO_ARRAY_UPDATED = "co_no_array_updated";

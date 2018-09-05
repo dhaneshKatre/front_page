@@ -1,7 +1,7 @@
 body {
   font-family: sans-serif;
   justify-content: center;
-  margin-top: 10px;
+  padding-bottom: 10px;
 }
 
 .logoImg {
@@ -11,11 +11,7 @@ body {
 }
 
 .coDiv {
-  margin: 0 -15px;
-}
-
-.formCont {
-  height: 300px;
+  margin-top: -40px;
 }
 
 .tableHolder {
@@ -37,14 +33,34 @@ body {
   display: block;
 }
 
-.swipeContainer {
-  border: 2px solid #0c0;
+.navButtonsHolder {
   margin-top: 20px;
+}
+
+.paper {
+  float: right;
+  width: 63%;
+  height: auto;
+  margin: 20px 0px;
+  padding-top: 20px;
+  padding-right: 20px;
+}
+
+@media only screen and (max-width: 1030px) {
+  .paper {
+    padding-right: 0px;
+  }
+}
+
+.swipeContainer {
+  margin-top: 20px;
+  float: left;
   position: fixed;
-  min-height: 100px;
-  width: 30%;
+  width: 37%;
+  height: auto;
   position: fixed;
 }
+
 
 .mainDiv {
   justify-content: center;
@@ -55,15 +71,6 @@ body {
 .nameInfoHolder {
   margin-left: 20px;
   margin-bottom: 50px;
-}
-
-.paper {
-  border: 2px solid #c00;
-  width: 100%;
-  height: auto;
-  margin-top: 20px;
-  margin-bottom: 30px;
-  padding-top: 100px;
 }
 
 table {

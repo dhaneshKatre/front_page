@@ -13,10 +13,10 @@ class TableGenerator extends Component {
         try {
             if(this.props.coArray.length === 0)
                 for(let i=0;i<this.props.totalCos;i++)
-                    cos.push(<td key={i}>CO{i+1}</td>);
+                    cos.push(<td key={Math.floor(Math.random() + i)}>CO{this.props.coNoArray[i]}</td>);
             else for(let i=0;i<this.props.totalCos;i++)
                 if (!this.props.coArray[i]) continue;
-            else cos.push(<td colSpan={this.props.coArray[i].split(";").length} key={i}>CO{i+1}</td>);
+            else cos.push(<td colSpan={this.props.coArray[i].split(";").length}>CO{this.props.coNoArray[i]}</td>);
         } catch(e) {
             console.log(e);
         }
@@ -26,8 +26,8 @@ class TableGenerator extends Component {
     renderMarks() {
         let tds = []
         try {
-            tds = this.props.marksArray.map(item => {
-                return item.split(";").map(mks => {
+            tds = this.props.marksArray.map((item, i) => {
+                return item.split(";").map((mks ,j) => {
                     return <td>{mks}</td>
                 });
             });
@@ -38,8 +38,8 @@ class TableGenerator extends Component {
     renderTD() {
         let ret = []
         try {
-            ret = this.props.coArray.map(item => {
-                return item.split(";").map(it => {
+            ret = this.props.coArray.map((item, i) => {
+                return item.split(";").map((it, ind) => {
                     return <td></td>
                 });
             });
@@ -49,8 +49,8 @@ class TableGenerator extends Component {
 
     renderQuestions() {
         let tds = []
-        tds = this.props.coArray.map(item => {
-            return item.split(";").map(ques => {
+        tds = this.props.coArray.map((item, i) => {
+            return item.split(";").map((ques, ind) => {
                 return <td>{ques}</td>
             });
         });
@@ -93,7 +93,8 @@ function mapStateToProps(state) {
     return {
         totalCos: state.form.totalCos,
         coArray: state.form.coArray,
-        marksArray: state.form.marksArray
+        marksArray: state.form.marksArray,
+        coNoArray: state.form.coNoArray
     }
 }
 

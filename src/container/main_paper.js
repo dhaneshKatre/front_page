@@ -37,8 +37,8 @@ class MainPaper extends Component {
                             <h3><b>Assignment No. {this.props.assignNo}</b></h3>
                         </div><br />
                         <div className="w3-row w3-center">
-                            <div className="w3-col s6"><h4><b>Subject: {this.props.subject}</b></h4></div>
-                            <div className="w3-rest"><h4><b>Semester: {this.props.sem}</b></h4></div>
+                            <div className="w3-col s6"><h3><b>Subject: {this.props.subject}</b></h3></div>
+                            <div className="w3-rest"><h3><b>Semester: {this.props.sem}</b></h3></div>
                         </div>
                     </div>
                     <TableGenerator />

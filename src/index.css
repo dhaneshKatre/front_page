@@ -42,13 +42,20 @@ body {
   width: 63%;
   height: auto;
   margin: 20px 0px;
-  padding-top: 20px;
-  padding-right: 20px;
+  padding: 100px 40px;
+}
+
+h3 {
+  font-size: 1.5em;
 }
 
 @media only screen and (max-width: 1030px) {
   .paper {
-    padding-right: 0px;
+    padding: 50px 31px;
+  }
+  h3 {
+    font-size: 1.25em;
+    font-weight: bold;
   }
 }
 

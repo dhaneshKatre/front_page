@@ -69,7 +69,7 @@ class MainForm extends React.Component {
                 },
                 {
                     target: '#almightyPdfButton',
-                    content: 'The PDF button! Will generate PDF of following paper and auto-download it. Currently not suitable for phones.',
+                    content: 'The PDF button! Will generate PDF of the paper and auto-download it. Currently not suitable for phones.',
                     placement: 'top',
                     showSkipButton: true,
                     showProgress: true,
@@ -78,7 +78,7 @@ class MainForm extends React.Component {
                 },
                 {
                     target: '#almightyPngButton',
-                    content: 'The PNG button! Will generate PNG of following paper and auto-download it. Made for phones.',
+                    content: 'The PNG button! Will generate PNG of the paper and auto-download it. Made for phones.',
                     placement: 'top',
                     showSkipButton: true,
                     showProgress: true,
@@ -96,7 +96,7 @@ class MainForm extends React.Component {
                 },
                 {
                     target: '#form2',
-                    content: 'The most important part of this app, table generator! Enter number of total CO\'s here and then subsequently enter question numbers and their marks as per the assignment. Separate questions and marks with a ; (like 1a;1b;2a 03;05). Remember, how you specify, is how it\'ll generate XD',
+                    content: 'The most important part of this app, table generator! Enter number of total CO\'s here and then subsequently enter CO number, question numbers and their marks as per the assignment. Separate questions and marks with a ; (like 1a;1b;2a 03;05). Remember, how you specify, is how it\'ll generate XD',
                     placement: 'right',
                     showSkipButton: true,
                     disableBeacon: true,
@@ -143,6 +143,39 @@ class MainForm extends React.Component {
 
     onBatchChanged(event) {
         this.props.batchChanged(event.target.value);
+    }
+
+    getSemConfig() {
+        var d = new Date();
+        var month = d.getMonth();
+        if(month <= 4) {
+            return (
+                <Select
+                    style={{width: 250}}
+                    value={this.props.sem}
+                    onChange={this.onSemesterChanged.bind(this)}
+                    inputProps={{name: 'Semester', id: "sem-select"}} >
+                        <MenuItem value="II">II</MenuItem>
+                        <MenuItem value="IV">IV</MenuItem>
+                        <MenuItem value="VI">VI</MenuItem>
+                        <MenuItem value="VIII">VIII</MenuItem>
+                </Select>
+                
+            );
+        } else {
+            return (
+                <Select
+                    style={{width: 250}}
+                    value={this.props.sem}
+                    onChange={this.onSemesterChanged.bind(this)}
+                    inputProps={{name: 'Semester', id: "sem-select"}} >
+                        <MenuItem value="I">I</MenuItem>
+                        <MenuItem value="III">III</MenuItem>
+                        <MenuItem value="V">V</MenuItem>
+                        <MenuItem value="VII">VII</MenuItem>
+                </Select>
+            );
+        }
     }
 
 
@@ -245,20 +278,7 @@ class MainForm extends React.Component {
                                     </FormControl><br />
                                     <FormControl>
                                         <InputLabel htmlFor="sem-select">Semester</InputLabel>
-                                        <Select
-                                            style={{width: 250}}
-                                            value={this.props.sem}
-                                            onChange={this.onSemesterChanged.bind(this)}
-                                            inputProps={{name: 'Semester', id: "sem-select"}} >
-                                                <MenuItem value="I">I</MenuItem>
-                                                <MenuItem value="II">II</MenuItem>
-                                                <MenuItem value="III">III</MenuItem>
-                                                <MenuItem value="IV">IV</MenuItem>
-                                                <MenuItem value="V">V</MenuItem>
-                                                <MenuItem value="VI">VI</MenuItem>
-                                                <MenuItem value="VII">VII</MenuItem>
-                                                <MenuItem value="VIII">VIII</MenuItem>
-                                        </Select>
+                                        {this.getSemConfig()}
                                         <FormHelperText>Choose your Semester</FormHelperText>
                                     </FormControl><br />
                                     <TextField
@@ -372,7 +392,6 @@ class MainForm extends React.Component {
     //JoyRide callback
     callback = (tour) => {
         const { type } = tour;
-        let demo = document.getElementById("demo");
         if(type === EVENTS.TOUR_END || type === EVENTS.CLOSE) {
             this.setState({run: false, stepIndex: 0, formToRender: 0});
         }
@@ -380,13 +399,13 @@ class MainForm extends React.Component {
             if(this.state.stepIndex + 1 === 1){
                 this.setState({stepIndex: this.state.stepIndex + 1, formToRender: 1});
                 setTimeout(() => {
-                    demo.click();
+                    this.setState({run: true});
                 },100);
             }
             else if(this.state.stepIndex + 1 === 5){
                 this.setState({stepIndex: this.state.stepIndex + 1, formToRender: 2});
                 setTimeout(() => {
-                    demo.click();
+                    this.setState({run: true});
                 },100);
             }
             else this.setState({stepIndex: this.state.stepIndex + 1});
@@ -439,7 +458,7 @@ class MainForm extends React.Component {
                                             const pdf = new jsPDF('p','pt','a4');
                                             let w = (window.innerWidth > 1030)?0:paper.offsetWidth;
                                             pdf.addImage(paperImg, 'JPEG', 0, 0, w, 0);
-                                            pdf.save(`${this.props.subject}_${this.props.assignNo}_frontPage.pdf`);
+                                            pdf.save(`${this.props.subject}-${this.props.assignNo}-FP.pdf`);
                                         });
                                     }}
                                 ><PictureAsPdf style={{margin: 5}}/>PDF</Button>
@@ -456,7 +475,7 @@ class MainForm extends React.Component {
                                         html2canvas(paper).then(canvas => {
                                             let duri = canvas.toDataURL();
                                             let link = document.createElement("a");
-                                            link.download = `${this.props.subject}_${this.props.assignNo}_frontPage.png`;
+                                            link.download = `${this.props.subject}-${this.props.assignNo}-FP.png`;
                                             link.href = duri;
                                             link.click(); 
                                         });
